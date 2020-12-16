@@ -72,3 +72,19 @@ while True:
         else:
             print("Bad input.")
             continue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# lmao actually reading until the end? you're cool.
