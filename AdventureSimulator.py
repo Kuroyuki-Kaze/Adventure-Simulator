@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
-# Release Version: beta_1.4
-# 1.0: release
-# 1.1: less cluttering
-# 1.2: added random doujin
-# 1.3: fetching reworked
-# 1.4: fixed a few bugs such as: ascii/int32 exception and bad naming protocols lmao
-import re
+# Release Version: 1.0
+# beta_1.0: release
+# beta_1.1: less cluttering
+# beta_1.2: added random doujin
+# beta_1.3: fetching reworked
+# beta_1.4: fixed a few bugs such as: ascii/int32 exception and bad naming protocols lmao
+# 1.0: rewrote the entire doujin variable accessing due to the switch from using dictionary to dataclass in the fetching module and some minor changes
+
 import nhentai
+
+Nhentai = nhentai.NHentai()
 
 # Todo: add this obfuscation thing
 # def ReplaceTags():
@@ -14,60 +17,60 @@ import nhentai
     
 def printrDoujin():
     global rdoujin
-    global rdoujintags
-    global rdoujincategories
-    global rdoujinpages
     # Add "#" before the command that you don't want to be executed.
-    print("Seed number: " + str(rdoujin['id']) + '\n')
-    print("Adventure Title: " + str(rdoujin['title']) + '\n')
-    #print("Also known as: " + str(rdoujin['secondary_title']) + '\n')
-    print("Guide(s): " + str(rdoujin['artists']) + '\n')
-    print("List of things you've done: " + rdoujintags + '\n')
-    #print("Journey's written language(s): " + str(rdoujin['languages']) + '\n')
-    #print("Journey book's classification: " + rdoujincategories + '\n')
-    #print("The number of pages of the Book: " + rdoujinpages + '\n')
-    #print(doujin)
+    print("")
+    #print("Seed number: " + str(doujin.id), end="\n")
+    #print("Adventure Title: " + str(doujin.title), end="\n")
+    #print("Also known as (might not display properly): " + str(doujin.secondary_title), end="\n")
+    #print("Guide(s): " + str(doujin.artists), end="\n")
+    #print("List of things you've done: " + str(doujin.tags), end="\n")
+    #print("Journey's written language(s): " + str(doujin.languages), end="\n")
+    #print("Journey book's classification: " + str(doujin.categories), end="\n")
+    #print("Guild: " + str(doujin.groups), end="\n")
+    #print("Party members: " + str(doujin.characters), end="\n")
+    #print("Adventure parody: " + str(doujin.parodies), end="\n")
+    #print("The number of pages of the book: " + str(doujin.total_pages), end="\n")
+    print(doujin)
+    print("")
 
 def printDoujin():
     global doujin
-    global doujintags
-    global doujincategories
-    global doujinpages
-    # Add "#" before the command that you don't want to be executed.
-    #print("Seed number: " + str(doujin['id']) + '\n')
-    print("Adventure Title: " + str(doujin['title']) + '\n')
-    #print("Also known as: " + str(doujin['secondary_title']) + '\n')
-    print("Guide(s): " + str(doujin['artists']) + '\n')
-    print("List of things you've done: " + doujintags + '\n')
-    #print("Journey's written language(s): " + str(doujin['languages']) + '\n')
-    #print("Journey book's classification: " + doujincategories + '\n')
-    #print("The number of pages of the Book: " + doujinpages + '\n')
-    #print(doujin)
+    if doujin != None:
+        # Add "#" before the command that you don't want to be executed.
+        print("")
+        #print("Seed number: " + str(doujin.id), end="\n")
+        print("Adventure Title: " + str(doujin.title), end="\n")
+        #print("Also known as (might not display properly): " + str(doujin.secondary_title), end="\n")
+        print("Guide(s): " + str(doujin.artists), end="\n")
+        print("List of things you've done: " + str(doujin.tags), end="\n")
+        print("Journey's written language(s): " + str(doujin.languages), end="\n")
+        #print("Journey book's classification: " + str(doujin.categories), end="\n")
+        print("Guild: " + str(doujin.groups), end="\n")
+        print("Party members: " + str(doujin.characters), end="\n")
+        print("Adventure parody: " + str(doujin.parodies), end="\n")
+        print("The number of pages of the book: " + str(doujin.total_pages), end="\n")
+        #print(doujin)
+        print("")
+    else:
+        print("You went adventuring and you found... absolutely nothing. Try again with a better seed, nub.")
 
-Nhentai = nhentai.NHentai()
+
 print("Welcome to the adventure simulator! Type in a seed number to go explore!")
+print("Type 'quit' to quit the program!")
+print("Type 'random' to use a random seed!")
 while True:
     searchID = input("Enter the seed number: ")
     try:
         if __name__ == '__main__':
             doujin: dict = Nhentai._get_doujin(id=int(searchID))
-            doujintags = str(doujin['tags'])
-            doujincategories = re.search(r"\[\'(.*?)\'\]", str(doujin['categories'])).group(1)
-            doujinpages = re.search(r"\[\'(.*?)\'\]", str(doujin['pages'])).group(1)
             #ReplaceTags()
-        try:
             printDoujin()
-        except TypeError:
-            print("You went for a walk and then died of exhaustion. Very uncool.")
     except ValueError:
         if(searchID == "quit"):
             break
         elif(searchID == "random"):
             Nhentai = nhentai.NHentai()
             rdoujin: dict = Nhentai.get_random()
-            rdoujintags = str(rdoujin['tags'])
-            rdoujincategories = re.search(r"\[\'(.*?)\'\]", str(rdoujin['categories'])).group(1)
-            rdoujinpages = re.search(r"\[\'(.*?)\'\]", str(rdoujin['pages'])).group(1)
             printrDoujin()
         else:
             print("Bad input.")
