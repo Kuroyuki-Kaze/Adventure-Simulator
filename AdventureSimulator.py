@@ -16,21 +16,21 @@ Nhentai = nhentai.NHentai()
     # global doujintags
     
 def printrDoujin():
-    global rdoujin
+    global doujin
     # Add "#" before the command that you don't want to be executed.
     print("")
-    #print("Seed number: " + str(doujin.id), end="\n")
-    #print("Adventure Title: " + str(doujin.title), end="\n")
+    print("Seed number: " + str(doujin.id), end="\n")
+    print("Adventure Title: " + str(doujin.title), end="\n")
     #print("Also known as (might not display properly): " + str(doujin.secondary_title), end="\n")
-    #print("Guide(s): " + str(doujin.artists), end="\n")
-    #print("List of things you've done: " + str(doujin.tags), end="\n")
-    #print("Journey's written language(s): " + str(doujin.languages), end="\n")
+    print("Guide(s): " + str(doujin.artists), end="\n")
+    print("List of things you've done: " + str(doujin.tags), end="\n")
+    print("Journey's written language(s): " + str(doujin.languages), end="\n")
     #print("Journey book's classification: " + str(doujin.categories), end="\n")
-    #print("Guild: " + str(doujin.groups), end="\n")
-    #print("Party members: " + str(doujin.characters), end="\n")
-    #print("Adventure parody: " + str(doujin.parodies), end="\n")
-    #print("The number of pages of the book: " + str(doujin.total_pages), end="\n")
-    print(doujin)
+    print("Guild: " + str(doujin.groups), end="\n")
+    print("Party members: " + str(doujin.characters), end="\n")
+    print("Adventure parody: " + str(doujin.parodies), end="\n")
+    print("The number of pages of the book: " + str(doujin.total_pages), end="\n")
+    #print(doujin)
     print("")
 
 def printDoujin():
