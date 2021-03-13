@@ -69,8 +69,7 @@ while True:
         if(searchID == "quit"):
             break
         elif(searchID == "random"):
-            Nhentai = nhentai.NHentai()
-            rdoujin: dict = Nhentai.get_random()
+            doujin: dict = Nhentai.get_random()
             printrDoujin()
         else:
             print("Bad input.")
